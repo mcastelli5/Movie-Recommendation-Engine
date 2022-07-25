@@ -2,9 +2,6 @@ class User:
     def __init__(self):
         self.name = None
         self.search_terms = []
-        
-    def get_name(self):
-        self.name = input("Hi! What is your name?")
     
     def get_genres(self):
         genres = input("What Movie Genre are you interested in (if multiple, please separate them with a comma)? [Type 'skip' to skip this question] ")
