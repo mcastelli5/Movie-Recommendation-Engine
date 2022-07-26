@@ -1,8 +1,10 @@
+import difflib
+
 class User:
     def __init__(self):
         self.name = None
         self.search_terms = []
-        self.fav_movie = []
+        self.fav_movie = None
     
     def get_genres(self):
         genres = input("What Movie Genre are you interested in (if multiple, please separate them with a comma)? [Type 'skip' to skip this question] ")
@@ -14,13 +16,26 @@ class User:
         keywords = " ".join(["".join(n.split()) for n in keywords.lower().split(',')])
         return keywords
     
-    def get_fav_movie(self):
+    def get_fav_movie(self, titles):
+        confirmations = {"yes", "yep", "ye", "yeah", "yessir"}
         fav_movie = input("What is one of your favorite movies?")
         fav_movie = " ".join(["".join(n.split()) for n in fav_movie.lower().split(',')])
-        return fav_movie
+        if fav_movie.lower() == "skip" or fav_movie is None:
+            self.fav_movie = None
+            return
+        else:
+            closest_titles = difflib.get_close_matches(fav_movie, titles)
+            for movie in closest_titles:
+                is_movie = input(f"Did you mean {movie}? (yes or no)")
+                if is_movie.lower() in confirmations:
+                    self.fav_movie = movie
+                    return
+            try_again = input("Hmmmm I don't think I know that movie, would you like to try again?")
+            if try_again in confirmations:
+                self.get_fav_movie(titles)
+            else:
+                return
         
-    def set_fav_movie(self):
-        self.fav_movie = self.get_fav_movie()
 
     def get_searchTerms(self):
         genres = self.get_genres()
