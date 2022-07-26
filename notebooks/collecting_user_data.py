@@ -35,7 +35,6 @@ class User:
                 self.get_fav_movie(titles)
             else:
                 return
-        
 
     def get_searchTerms(self):
         genres = self.get_genres()
