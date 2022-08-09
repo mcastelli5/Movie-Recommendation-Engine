@@ -34,3 +34,5 @@ def train_svd():
         svd,
         os.path.join(config.MODEL_OUTPUT, "svd.bin")
     )
+    
+    print("it ran!")
