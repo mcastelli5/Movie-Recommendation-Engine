@@ -1,7 +1,7 @@
 /*!
-* Start Bootstrap - Grayscale v7.0.5 (https://startbootstrap.com/theme/grayscale)
+* Start Bootstrap - Agency v7.0.11 (https://startbootstrap.com/theme/agency)
 * Copyright 2013-2022 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
 */
 //
 // Scripts
