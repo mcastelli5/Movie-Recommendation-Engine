@@ -2,7 +2,7 @@ from get_estimate import get_estimate
 import config
 import joblib
 
-def collab_based_rec(movies, ratings, fav_movie):
+def collab_based_rec(): #movies, ratings, fav_movie
     """
     Summary:
         provide user with recommended movies based on collaborative filtering approach by using their favorite movie to find similar users and their respective preferences.
@@ -14,7 +14,7 @@ def collab_based_rec(movies, ratings, fav_movie):
         
     Returns:
         list: collaborative filtered movie recommendations based on user's favorite movie
-    """
+
     model = joblib.load(config.SVD_MODEL)
     df = movies.copy(deep=True)
     
@@ -26,6 +26,7 @@ def collab_based_rec(movies, ratings, fav_movie):
 
     # Estimate the ratings the User would give each movie based on the similar users (predicted) ratings
     df['est'] = df.apply(lambda x: get_estimate(similar_users, x.id, model), axis=1)
-    
+    """
+    model = joblib.load(config.SVD_MODEL)
     print(model)
     return model
