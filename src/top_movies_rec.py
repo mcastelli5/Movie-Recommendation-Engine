@@ -1,4 +1,5 @@
 import config
+import pandas as pd
 
 def top_movies_rec():
     """
@@ -15,7 +16,7 @@ def top_movies_rec():
         user just wants to see the most popular movies without a personalized recommendation algorithm added to it
         user accidentally bypassess the user preferences and scrolls to the movie recs section which will automatically populate the top movies at the moment (static for this project)
     """
-    movies = config.TRAINING_FILE_MOVIES
+    movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
     ranked_titles = []
     ranked_movies = movies.copy(deep=True)
     ranked_movies = ranked_movies.sort_values("popularity", ascending=False)
