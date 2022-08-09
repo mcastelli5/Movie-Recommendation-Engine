@@ -1,7 +1,7 @@
 import config
 import os
 import pandas as pd
-import joblib
+#import joblib
 from surprise import Dataset
 from surprise import Reader
 from surprise.model_selection import cross_validate
@@ -30,7 +30,7 @@ def train_svd():
     svd.fit(trainset)
     
     # Return model for usage
-    print("hi")
+    return "hi"
     
     """
     # Save model to model directory for later usage
