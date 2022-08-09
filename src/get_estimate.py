@@ -1,4 +1,5 @@
-from model import svd
+import joblib
+import config
 
 def get_estimate(similar_users, movie):
     """
@@ -11,7 +12,7 @@ def get_estimate(similar_users, movie):
         model (model): trained model used to estimate the movie in question based on user in question past ratings
     """
     
-    model = svd
+    model = joblib.load(config.SVD_MODEL)
     total_est = 0
     num_similar = len(similar_users)
     if not num_similar:
