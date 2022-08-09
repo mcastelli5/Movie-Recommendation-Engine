@@ -17,7 +17,6 @@ def train_svd():
     
     # Instantiate reader object and svd object
     reader = Reader(rating_scale=(1, 5))
-    algo = SVD()
 
     # Load data into surprise dataset format with reader
     data = Dataset.load_from_df(ratings[['userId', 'movieId', 'rating']], reader)
