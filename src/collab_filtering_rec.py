@@ -1,5 +1,5 @@
 from get_estimate import get_estimate
-from train_svd import train_svd
+from model import svd
 
 def collab_based_rec(movies, ratings, fav_movie):
     """
@@ -14,7 +14,7 @@ def collab_based_rec(movies, ratings, fav_movie):
     Returns:
         list: collaborative filtered movie recommendations based on user's favorite movie
     """
-    model = train_svd()
+    model = svd
     df = movies.copy(deep=True)
     
     # Get fav_movie id for the User's favorite movie to analyize
@@ -25,3 +25,5 @@ def collab_based_rec(movies, ratings, fav_movie):
 
     # Estimate the ratings the User would give each movie based on the similar users (predicted) ratings
     df['est'] = df.apply(lambda x: get_estimate(similar_users, x.id, model), axis=1)
+    
+    return svd

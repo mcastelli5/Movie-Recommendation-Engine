@@ -1,6 +1,6 @@
-from train_svd import train_svd
+from model import svd
 
-def get_estimate(similar_users, movie, model):
+def get_estimate(similar_users, movie):
     """
     Summary:
         provide user rating estimates on each movie that is in the movies dataframe based on similar user ratings (with trained model).
@@ -10,7 +10,7 @@ def get_estimate(similar_users, movie, model):
         movie (str): string value to represent the movie being estimated
         model (model): trained model used to estimate the movie in question based on user in question past ratings
     """
-    model = train_svd()
+    model = svd
     total_est = 0
     num_similar = len(similar_users)
     if not num_similar:
