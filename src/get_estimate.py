@@ -1,3 +1,5 @@
+from train_svd import train_svd
+
 def get_estimate(similar_users, movie, model):
     """
     Summary:
@@ -8,7 +10,7 @@ def get_estimate(similar_users, movie, model):
         movie (str): string value to represent the movie being estimated
         model (model): trained model used to estimate the movie in question based on user in question past ratings
     """
-    
+    model = train_svd()
     total_est = 0
     num_similar = len(similar_users)
     if not num_similar:

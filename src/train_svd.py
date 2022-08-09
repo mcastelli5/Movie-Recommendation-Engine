@@ -29,10 +29,13 @@ def train_svd():
     trainset = data.build_full_trainset()
     svd.fit(trainset)
     
+    # Return model for usage
+    print("hi")
+    
+    """
     # Save model to model directory for later usage
     joblib.dump(
         svd,
         os.path.join(config.MODEL_OUTPUT, "svd.bin")
     )
-    
-    print("it ran!")
+    """
