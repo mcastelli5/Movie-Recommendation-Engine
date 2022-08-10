@@ -1,7 +1,11 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+import config
 
-def content_based_rec(movies, search_terms):
+movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
+
+def content_based_rec(movies_df=movies, search_terms=[]):
     """
     Summary:
         provides a content-based movie recommnedation based on the users search terms that they provided as input
@@ -11,15 +15,14 @@ def content_based_rec(movies, search_terms):
         search_terms (list): values provided by the user that will allow movies to be rated on content specific values
 
     Returns:
-        list: content-based movie recommendations based on user search terms
+        pd.DataFrame: df containing content-based movie recommendations based on user search terms
     
     Edge Cases:
         user cannot think of favorite movie and only provides movie keywords and genres that they are interested in
         user provides all user preference information and content-based information is used in tandem with collaborative filtering technique for a better personalized recommendation
     """
-    ranked_titles = []
     
-    df = movies.copy(deep=True)
+    df = movies_df.copy(deep=True)
     
     # Calculate the average "vote_average" to limit the recs to movies that are above average
     rating_avg = round(df.vote_average.mean(), 0)
@@ -46,8 +49,12 @@ def content_based_rec(movies, search_terms):
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     
     # Append top ranked df based on search terms to ranked_titles
-    for i in range(1, 51):
-        indx = sim_scores[i][0]
-        ranked_titles.append([df['title'].iloc[indx], df['rating_id'].iloc[indx]])
+    ranked_titles = movies_df[movies_df.index == sim_scores[1][0]]
+    for i in range(len(df)):
+        idx = sim_scores[i][0]
+        ranked_titles = pd.concat([ranked_titles, movies_df[movies_df.index == idx]])
+        
+    # Reset index to adjust for new movie order
+    ranked_titles.reset_index(drop=True, inplace=True)
         
     return ranked_titles

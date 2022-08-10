@@ -1,6 +1,8 @@
 import joblib
 import config
 
+model = joblib.load(config.SVD_MODEL)
+
 def get_estimate(similar_users, movie):
     """
     Summary:
@@ -9,10 +11,9 @@ def get_estimate(similar_users, movie):
     Args:
         similar_users (list): users that rated the current users favorite movie similarly
         movie (str): string value to represent the movie being estimated
-        model (model): trained model used to estimate the movie in question based on user in question past ratings
     """
     
-    model = joblib.load(config.SVD_MODEL)
+    global model
     total_est = 0
     num_similar = len(similar_users)
     if not num_similar:

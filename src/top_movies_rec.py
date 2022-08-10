@@ -10,16 +10,18 @@ def top_movies_rec():
         movies (pd.DataFrame): movies dataframe the contains the movie metadata
 
     Returns:
-        list: list of top 10 movies based on popularity scores
+        pd.DataFrame: movies df that is sorted in descending order by popularity
         
     Edge Cases:
         user just wants to see the most popular movies without a personalized recommendation algorithm added to it
         user accidentally bypassess the user preferences and scrolls to the movie recs section which will automatically populate the top movies at the moment (static for this project)
     """
-    movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
-    ranked_titles = []
+    
+    movies = pd.read_csv("../data/movies.csv")
     ranked_movies = movies.copy(deep=True)
     ranked_movies = ranked_movies.sort_values("popularity", ascending=False)
-    for idx in range(10):
-        ranked_titles.append([movies.title.iloc[idx], movies.rating_id.iloc[idx]])
-    return ranked_titles
+        
+    # Reset index to adjust for new movie order
+    ranked_movies.reset_index(drop=True, inplace=True)
+    
+    return ranked_movies
