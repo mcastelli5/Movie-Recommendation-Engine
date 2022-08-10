@@ -36,7 +36,7 @@
         </header>
         <!-- Recommendation Carousel-->
         <section class="page-section bg-light" id="recommendations">
-            <div class="container" id="tryThis">
+            <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Personalized Recommendations</h2>
                     <h3 class="section-subheading text-muted">Happy watching!</h3>
@@ -408,6 +408,26 @@
                                     <button class="mt-5 btn btn-primary btn-xl text-uppercase" type="button"  data-bs-dismiss="modal">
                                         Get Recommendation!
                                     </button>
+                                    <script>
+                                        $('#recModal').on('hide.bs.modal', function(e) {
+                                            if ($('#recModal').attr('ModalXbuttonPressed') != undefined) {
+                                              $('#recModal').removeAttr('ModalXbuttonPressed');
+                                              return;
+                                            }
+                                            $('html, body').animate({
+                                              scrollTop: $("#recommendations").offset().top
+                                            }, 200);
+                                          });
+                                          
+                                          $('#recModal button[class="close"][data-dismiss="modal"]').on('click', function(e) {
+                                            $('#recModal').attr('ModalXbuttonPressed', true);
+                                          });
+                                          
+                                          
+                                          $("#recommendations").on('click', function(e) {
+                                            $('#recModal').modal('hide');
+                                          });
+                                    </script>
                                 </div>
                             </div>
                         </div>
