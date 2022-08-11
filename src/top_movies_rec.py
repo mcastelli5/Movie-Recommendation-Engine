@@ -6,9 +6,6 @@ def top_movies_rec():
     Summary:
         provides user with top 10 most popular movies at this moment, since they did not provide any input. Not personalized towards the user at all.
 
-    Args:
-        movies (pd.DataFrame): movies dataframe the contains the movie metadata
-
     Returns:
         pd.DataFrame: movies df that is sorted in descending order by popularity
         
@@ -17,11 +14,12 @@ def top_movies_rec():
         user accidentally bypassess the user preferences and scrolls to the movie recs section which will automatically populate the top movies at the moment (static for this project)
     """
     
-    movies = pd.read_csv("../data/movies.csv")
+    movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
     ranked_movies = movies.copy(deep=True)
     ranked_movies = ranked_movies.sort_values("popularity", ascending=False)
         
     # Reset index to adjust for new movie order
     ranked_movies.reset_index(drop=True, inplace=True)
+    ranked_movies = ranked_movies[:20]
     
     return ranked_movies

@@ -24,10 +24,6 @@ def content_based_rec(movies_df=movies, search_terms=[]):
     
     df = movies_df.copy(deep=True)
     
-    # Calculate the average "vote_average" to limit the recs to movies that are above average
-    rating_avg = round(df.vote_average.mean(), 0)
-    df = df[df.vote_average >= rating_avg]
-    
     # Creating a copy of the last row of the dataset, which we will use to input the user's input
     new_row = df.iloc[-1,:].copy()
     
@@ -49,10 +45,10 @@ def content_based_rec(movies_df=movies, search_terms=[]):
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     
     # Append top ranked df based on search terms to ranked_titles
-    ranked_titles = movies_df[movies_df.index == sim_scores[1][0]]
-    for i in range(len(df)):
+    ranked_titles = df[df.index == sim_scores[1][0]]
+    for i in range(2,21):
         idx = sim_scores[i][0]
-        ranked_titles = pd.concat([ranked_titles, movies_df[movies_df.index == idx]])
+        ranked_titles = pd.concat([ranked_titles, df[df.index == idx]])
         
     # Reset index to adjust for new movie order
     ranked_titles.reset_index(drop=True, inplace=True)

@@ -21,7 +21,7 @@ def hybrid_rec(search_terms, fav_movie):
     hybrid_df.rename({"index": "rnk"}, axis=1, inplace=True)
     
     # Filter df to top 50 content-based recommendations (regardless of est value)
-    hybrid_df = hybrid_df[:50]
+    hybrid_df = hybrid_df[:20]
     
     # Sort movies dataframe by "est" column
     hybrid_df.sort_values(["est", "rnk"], ascending=[False, True], inplace=True)

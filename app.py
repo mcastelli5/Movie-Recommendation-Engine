@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, request, render_template
+from flask import Flask, jsonify, request, render_template
 import re
 
 """
@@ -77,15 +77,19 @@ def recommend(choice):
         return "opps! movie not found in our database"
     
 """
-            
-            
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
-    return render_template('main_page.html')
-@app.route("/Search")
-def search_movies():
+    return render_template("index.html")
+
+if __name__=='__main__':
+    app.run(debug=True)
+
+
+
+
+"""def search_movies():
     #getting user input
     choice = request.args.get('movie')
     #removing all the characters except alphabets and numbers.
@@ -97,7 +101,4 @@ def search_movies():
     if type(movies) == type('string'):
         return render_template('movie_list.html',movie=movies,s='opps')
     else:
-        return render_template('movie_list.html',movie=movies)
-
-if __name__=="__main__":
-    app.run(debug=False)
+        return render_template('movie_list.html',movie=movies)"""
