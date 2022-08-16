@@ -1,3 +1,4 @@
+from crypt import methods
 import numpy as np
 import pandas as pd
 from flask import Flask, jsonify, request, render_template
@@ -79,9 +80,21 @@ def recommend(choice):
 """
 app = Flask(__name__)
 
-@app.route('/')
+movies = [
+    {
+        'movie0': 'Movie One',
+        'overview0': 'Movie One Overview',
+        'link0': ''
+    },
+    {
+        'movie1': 'Movie Two',
+        'overview1': 'Movie Two Overview'
+    }
+]
+
+@app.route('/', methods=["GET", "POST"])
 def home():
-    return render_template("index.html")
+    return render_template("index.html", movies=movies)
 
 if __name__=='__main__':
     app.run(debug=True)
