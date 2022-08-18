@@ -1,5 +1,5 @@
-from get_estimate import get_estimate
-import config
+from src.get_estimate import get_estimate
+import src.config as config
 import joblib
 import pandas as pd
 
@@ -30,10 +30,10 @@ def collab_based_rec(movies_df = movies, fav_movie = None):
     
     # Get fav_movie id for the User's favorite movie to analyize
     fav_movie_id = df[df.title == fav_movie]['rating_id'].values[0]
-    fave_movie_idx = df[df.title == fav_movie].index[0]
+    fav_movie_idx = df[df.title == fav_movie].index[0]
     
     # Drop favorite movie from local movies df
-    df = df.drop(index=fave_movie_idx)
+    df = df.drop(index=fav_movie_idx)
     
     # Get similiar users that have highly rated the users fav_movie in the past (top 15 users)
     similar_users = set(ratings[(ratings.movieId == fav_movie_id) & (ratings.rating >= 4)].sort_values("rating", ascending=False)["userId"])

@@ -1,5 +1,5 @@
 import joblib
-import config
+import src.config as config
 
 model = joblib.load(config.SVD_MODEL)
 

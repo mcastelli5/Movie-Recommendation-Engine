@@ -1,9 +1,9 @@
-from top_movies_rec import top_movies_rec
-from content_based_rec import content_based_rec
-from collab_filtering_rec import collab_based_rec
-from hybrid_rec import hybrid_rec
+from src.top_movies_rec import top_movies_rec
+from src.content_based_rec import content_based_rec
+from src.collab_filtering_rec import collab_based_rec
+from src.hybrid_rec import hybrid_rec
 
-def get_rec(search_terms: list = [], fave_movie: str = None):
+def get_rec(search_terms: list = [], fav_movie: str = None):
     """
     Summary:
         decide what strategy is used to return recommnedations to the user based on the preferences that they provided.
@@ -14,25 +14,20 @@ def get_rec(search_terms: list = [], fave_movie: str = None):
     """
     
     # Top Movies Recommendation
-    if not search_terms and not fave_movie:
+    if not search_terms and not fav_movie:
         rec_df = top_movies_rec()
     
     # Content-based Recommendation
-    elif search_terms and not fave_movie:
+    elif search_terms and not fav_movie:
         rec_df = content_based_rec(search_terms=search_terms)
     
     # Collaborative Filtering Recommendation
-    elif not search_terms and fave_movie:
-        rec_df = collab_based_rec(fave_movie=fave_movie)
+    elif not search_terms and fav_movie:
+        rec_df = collab_based_rec(fav_movie=fav_movie)
     
     # Hybrid Recommendation
-    elif search_terms and fave_movie:
-        rec_df = hybrid_rec(search_terms, fave_movie)
-    
-    # Get top 50 recommendations (in order)
-    ranked_titles = []
-    for idx, row in rec_df.iterrows():
-        ranked_titles.append([idx, row.title])
+    elif search_terms and fav_movie:
+        rec_df = hybrid_rec(search_terms, fav_movie)
     
     # Return the recommendations to be shown to the user
-    return ranked_titles
+    return rec_df

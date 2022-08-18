@@ -1,7 +1,7 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
-import config
+import src.config as config
 
 movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
 

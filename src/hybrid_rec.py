@@ -1,7 +1,7 @@
-import config
+import src.config as config
 import pandas as pd
-from collab_filtering_rec import collab_based_rec
-from content_based_rec import content_based_rec
+from src.collab_filtering_rec import collab_based_rec
+from src.content_based_rec import content_based_rec
 
 movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
 
