@@ -1,4 +1,4 @@
-import config
+import src.config as config
 import pandas as pd
 
 def top_movies_rec():
@@ -20,6 +20,6 @@ def top_movies_rec():
         
     # Reset index to adjust for new movie order
     ranked_movies.reset_index(drop=True, inplace=True)
-    ranked_movies = ranked_movies[:20]
+    ranked_movies = ranked_movies[:10]
     
     return ranked_movies
