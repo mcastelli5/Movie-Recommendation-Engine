@@ -28,7 +28,10 @@ def content_based_rec(movies_df=movies, search_terms=[]):
     new_row = df.iloc[-1,:].copy()
     
     # Adding the input to the new row
-    new_row.iloc[-2] = " ".join(search_terms)
+    if len(df.columns) == 13:
+        new_row.iloc[-3] = " ".join(search_terms)
+    else:
+        new_row.iloc[-2] = " ".join(search_terms)
   
     # Adding the new row to the dataset
     df = df.append(new_row)
@@ -46,9 +49,12 @@ def content_based_rec(movies_df=movies, search_terms=[]):
     
     # Append top ranked df based on search terms to ranked_titles
     ranked_titles = df[df.index == sim_scores[1][0]]
-    for i in range(2,21):
+    
+    for i in range(2,12):
         idx = sim_scores[i][0]
-        ranked_titles = pd.concat([ranked_titles, df[df.index == idx]])
+        new_row = df[df.index == idx]
+        ranked_titles = pd.concat([ranked_titles, new_row])
+    
         
     # Reset index to adjust for new movie order
     ranked_titles.reset_index(drop=True, inplace=True)

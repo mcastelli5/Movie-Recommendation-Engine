@@ -43,6 +43,7 @@ def collab_based_rec(movies_df = movies, fav_movie = None):
     
     # Sort movies dataframe by "est" column
     df = df.sort_values("est", ascending=False)
+    df = df.reset_index(drop=True)[:40]
     
     # Get top ranked movies
     return df
