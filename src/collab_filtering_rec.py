@@ -3,7 +3,7 @@ import src.config as config
 import joblib
 import pandas as pd
 
-model = joblib.load(config.SVD_MODEL)
+model = joblib.load(config.COLLAB_MODEL)
 movies = pd.read_csv(config.TRAINING_FILE_MOVIES)
 
 def collab_based_rec(movies_df = movies, fav_movie = None):
