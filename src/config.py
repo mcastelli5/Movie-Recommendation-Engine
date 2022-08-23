@@ -4,4 +4,4 @@ TRAINING_FILE_LINKS = "data/links_small.csv"
 
 MODEL_OUTPUT = "model/"
 
-SVD_MODEL = "model/svd.bin"
+COLLAB_MODEL = "model/collab_rec.bin"
