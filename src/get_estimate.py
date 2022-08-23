@@ -1,7 +1,7 @@
 import joblib
 import src.config as config
 
-model = joblib.load(config.SVD_MODEL)
+model = joblib.load(config.COLLAB_MODEL)
 
 def get_estimate(similar_users, movie):
     """
